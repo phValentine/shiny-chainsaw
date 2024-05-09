@@ -9,10 +9,10 @@ class Truck:
         self.departure_time = departure_time
 
     def __str__(self):
-        return (f"Capacity: {self.capacity}"
-                f"Load: {self.load}"
-                f"Packages: {self.packages}"
-                f"Speed: {self.speed}"
-                f"Milage: {self.milage}"
-                f"Address: {self.address}"
-                f"Departure time: {self.departure_time}")
+        return (f"Capacity: {self.capacity}   "
+                f"Load: {self.load}   "
+                f"Packages: {self.packages}   "
+                f"Speed: {self.speed}   "
+                f"Milage: {self.milage}   "
+                f"Address: {self.address}   "
+                f"Departure time: {self.departure_time}   ")
