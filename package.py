@@ -18,3 +18,4 @@ class Package:
                 f"Deadline: {self.deadline}   "
                 f"Weight: {self.weight}   "
                 f"Status: {self.status}")
+
