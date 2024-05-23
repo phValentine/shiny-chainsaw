@@ -6,18 +6,17 @@ from hashTable import HashTable
 from truck import Truck
 from package import Package
 
-
-            # Reads the data from Packages.csv
+# Reads the data from Packages.csv
 with open("data/Packages.csv") as csvpackage:
     Package_csv = csv.reader(csvpackage)
     Package_csv = list(Package_csv)
 
-            # Reads the data from Distances.csv
+    # Reads the data from Distances.csv
 with open("data/Distance.csv") as csvdistance:
     Distance_csv = csv.reader(csvdistance)
     Distance_csv = list(Distance_csv)
 
-            # Reads the data from Nodes.csv
+    # Reads the data from Nodes.csv
 with open("data/Nodes.csv") as csvnode:
     Node_csv = csv.reader(csvnode)
     Node_csv = list(Node_csv)
@@ -40,11 +39,20 @@ def load_package_data(filename, package_hash):
 
             package_hashmap.insert(pID, p)
 
-            # Creates the hash table that will store all the package data.
+
+# Creates the hash table that will store all the package data.
 package_hashmap = HashTable()
 
-            # Loads the data from Package.csv in package_hashmap
+# Loads the data from Package.csv in package_hashmap.
 load_package_data("data/Packages.csv", package_hashmap)
+
+
+# Finds the distance between two addresses, runs a reverse distance check if needed.
+def distance_between(x, y):
+    distance = Distance_csv[x][y]
+    if distance == '':
+        distance = Distance_csv[y][x]
+    return float(distance)
 
 
 truck1 = truck.Truck(16, None, [1, 13, 14, 15, 16, 19, 20, 29, 30, 31, 34, 37, 40], 18, 0.0,
