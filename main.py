@@ -3,7 +3,6 @@ import datetime
 
 import truck
 from hashTable import HashTable
-from truck import Truck
 from package import Package
 
 # Reads the data from Packages.csv
@@ -53,6 +52,14 @@ def distance_between(x, y):
     if distance == '':
         distance = Distance_csv[y][x]
     return float(distance)
+
+
+# Assigns address with integer identifier if possible
+def extract_address(address):
+    for row in Node_csv:
+        if address == row[2]:
+            return int(row[0])
+    return None
 
 
 truck1 = truck.Truck(16, None, [1, 13, 14, 15, 16, 19, 20, 29, 30, 31, 34, 37, 40], 18, 0.0,
