@@ -5,10 +5,20 @@ from truck import Truck
 from package import Package
 
 
-            # Reads the data from Packages.csv and makes a list for each row
-with open("data/Packages.csv") as package_csv:
-    Package_csv = csv.reader(package_csv)
+            # Reads the data from Packages.csv
+with open("data/Packages.csv") as csvpackage:
+    Package_csv = csv.reader(csvpackage)
     Package_csv = list(Package_csv)
+
+            # Reads the data from Distances.csv
+with open("data/Distance.csv") as csvdistance:
+    Distance_csv = csv.reader(csvdistance)
+    Distance_csv = list(Distance_csv)
+
+            # Reads the data from Nodes.csv
+with open("data/Nodes.csv") as csvnode:
+    Node_csv = csv.reader(csvnode)
+    Node_csv = list(Node_csv)
 
 
 def load_package_data(filename, package_hash):
@@ -33,5 +43,3 @@ package_hashmap = HashTable()
 
             # Loads the data from Package.csv in package_hashmap
 load_package_data("data/Packages.csv", package_hashmap)
-
-print(package_hashmap.lookup(1))
