@@ -1,3 +1,4 @@
+# A. :HASH TABLE
 class HashTable:
     def __init__(self, size=20):
         self.size = size
@@ -17,6 +18,7 @@ class HashTable:
                     pair[1] = value
             return self.table[index].append((key, value))
 
+# B. :LOOK-UP FUNCTION
     def lookup(self, key):
         index = self._hash(key)         # Calculates the index where the key will go
         if self.table[index] is not None:           # Checks if the index is populated

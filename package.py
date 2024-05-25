@@ -1,3 +1,4 @@
+# Creates package class
 class Package:
     def __init__(self, ID, address, city, state, zipcode, deadline, weight, status):
         self.ID = ID
@@ -9,6 +10,7 @@ class Package:
         self.weight = weight
         self.status = status
 
+# Formatting for display information
     def __str__(self):
         return (f"ID: {self.ID}   "
                 f"Address: {self.address}   "

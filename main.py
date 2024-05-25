@@ -1,3 +1,5 @@
+# C1. :IDENTIFICATION INFORMATION
+# Name - Nicholas Noto      Student ID - 009077293
 import csv
 import datetime
 
@@ -10,17 +12,18 @@ with open("data/Packages.csv") as csvpackage:
     Package_csv = csv.reader(csvpackage)
     Package_csv = list(Package_csv)
 
-    # Reads the data from Distances.csv
+# Reads the data from Distances.csv
 with open("data/Distance.csv") as csvdistance:
     Distance_csv = csv.reader(csvdistance)
     Distance_csv = list(Distance_csv)
 
-    # Reads the data from Nodes.csv
+# Reads the data from Nodes.csv
 with open("data/Nodes.csv") as csvnode:
     Node_csv = csv.reader(csvnode)
     Node_csv = list(Node_csv)
 
 
+# Reads package data and inserts it into the hashmap
 def load_package_data(filename, package_hash):
     with open(filename) as package_info:
         package_data = csv.reader(package_info)
@@ -61,7 +64,7 @@ def extract_address(address):
             return int(row[0])
     return None
 
-
+# Creation of truck objects
 truck1 = truck.Truck(16, None, [1, 13, 14, 15, 16, 19, 20, 29, 30, 31, 34, 37, 40], 18, 0.0,
                      "4001 South 700 East", datetime.timedelta(hours=8))
 
@@ -70,3 +73,5 @@ truck2 = truck.Truck(16, None, [2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 17, 18, 21, 22,
 
 truck3 = truck.Truck(16, None, [6, 23, 24, 25, 26, 27, 28, 32, 33, 35, 39], 18, 0.0,
                      "4001 South 700 East", datetime.timedelta(hours=9, minutes=5))
+
+# D. :INTERFACE

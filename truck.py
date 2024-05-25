@@ -1,3 +1,4 @@
+# Creates Truck class so multiple trucks can be made easily
 class Truck:
     def __init__(self, capacity, load, packages, speed, milage, address, departure_time):
         self.capacity = capacity
@@ -8,6 +9,7 @@ class Truck:
         self.address = address
         self.departure_time = departure_time
 
+# Formatting for display inofrmation
     def __str__(self):
         return (f"Capacity: {self.capacity}   "
                 f"Load: {self.load}   "
