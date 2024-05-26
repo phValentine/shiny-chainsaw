@@ -8,6 +8,7 @@ class Truck:
         self.milage = milage
         self.address = address
         self.departure_time = departure_time
+        self.time = departure_time
 
 # Formatting for display inofrmation
     def __str__(self):
