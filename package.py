@@ -14,15 +14,15 @@ class Package:
 
 # Formatting for display information
     def __str__(self):
-        return (f"ID: {self.ID}   "
-                f"Address: {self.address}   "
-                f"City: {self.city}   "
-                f"State: {self.sate}   "
-                f"Zipcode: {self.zipcode}   "
-                f"Deadline: {self.deadline}   "
-                f"Weight: {self.weight}   "
-                f"Delivery: {self.delivery_time}"
-                f"Status: {self.status}")
+        return (f"ID: {self.ID}           "
+                f"Address: {self.address}           "
+                f"City: {self.city}           "
+                f"State: {self.sate}           "
+                f"Zipcode: {self.zipcode}           "
+                f"Deadline: {self.deadline}           "
+                f"Weight: {self.weight}           "
+                f"Delivery: {self.delivery_time}           "
+                f"Status: {self.status}           ")
 
     def update_status(self, convert_timedelta):
         if self.delivery_time < convert_timedelta:

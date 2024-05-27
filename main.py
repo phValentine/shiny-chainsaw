@@ -108,6 +108,100 @@ truck2 = truck.Truck(16, None, [2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 17, 18, 21, 22,
 
 truck3 = truck.Truck(16, None, [6, 23, 24, 25, 26, 27, 28, 32, 33, 35, 39], 18, 0.0,
                      "4001 South 700 East", datetime.timedelta(hours=9, minutes=5))
+
+
 # Core algorithm
+def deliver_packages(truck):
+    # Makes array of packages to be delivered
+    not_delivered = []
+    for packageID in truck.packages:
+        package = package_hashmap.lookup(packageID)
+        not_delivered.append(package)
+
+    # clear truck package list for new order
+    truck.packages.clear()
+
+    # Cycles until all packages are delivered
+    while len(not_delivered) > 0:
+        next_address = 3000
+        next_package = None
+        # Nearest neighbor algorithm
+        for package in not_delivered:
+            if final_distance(truck.address, package.address) <= next_address:
+                next_address = final_distance(truck.address, package.address)
+                next_package = package
+
+        # Construct new truck package list and remove the package from not_delivered
+        truck.packages.append(next_package.ID)
+        not_delivered.remove(next_package)
+
+        # updates trucks mileage for each address
+        truck.mileage += next_address
+        truck.address = next_package.address
+
+        # Update trucks time
+        truck.time += datetime.timedelta(hours=next_address / 18)
+        next_package.delivery_time = truck.time
+        next_package.departure_time = truck.departure_time
+
+
+deliver_packages(truck1)
+deliver_packages(truck3)
+# Accounts for only having 2 drivers, truck 2 cannot leave until one of the other trucks get back
+truck2.departure_time = min(truck1.time, truck3.time)
+deliver_packages(truck2)
+
 
 # Interface
+class Main:
+    # Welcome message
+    print('Welcome to WGUPS')
+    miles = truck1.mileage + truck2.mileage + truck3.mileage
+    print("Today's mileage:", miles)
+    limit = 140
+    difference = limit - miles
+    print("That's", f"{difference:.3}", "miles less than our limit of", limit, "miles!")
+
+    print('')
+
+    # Ask for input to continue
+    text = input("For more information type: 'info'     ")
+    if text == 'info':
+        try:
+            # Get the time that is wanted
+            print("Enter a time in which you would like to pull the information from.")
+            user_time = input("format: HH:MM        ")
+            (h, m) = user_time.split(':')
+            convert_timedelta = datetime.timedelta(hours=int(h), minutes=int(m))
+
+            # Determines if all packages are needed to be printed or just one
+            print("What would you like to know about this time?")
+            package_selection = input("Enter 'one' for information on an individual package "
+                                      "or 'all' for all packages.      ")
+            # Prints just one package
+            if package_selection == 'one':
+                try:
+                    packageID = input("Enter the package ID you are looking for:        ")
+                    package = package_hashmap.lookup(int(packageID))
+                    package.update_status(convert_timedelta)
+                    print(str(package))
+                # Ends program
+                except ValueError:
+                    print("No")
+                    exit()
+
+            # Prints all packages
+            elif package_selection == 'all':
+                try:
+                    for packageID in range(1, 41):
+                        package = package_hashmap.lookup(packageID)
+                        package.update_status(convert_timedelta)
+                        print(str(package))
+                # Ends program
+                except ValueError:
+                    print("NO")
+                    exit()
+        # Ends program
+        except ValueError:
+            print("NO")
+            exit()
