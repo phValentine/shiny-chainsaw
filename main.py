@@ -77,26 +77,26 @@ def test_distance_between():
 
 # Extract Address, extracts distance from Node.csv and returns integer value
 # Only called upon by final_distance
-def extract_address(address):
+def address_id(address):
     for row in Node_csv:
         if address in row[2]:
             return int(row[0])
 
 
 # Test address
-def test_extract_address():
-    print(extract_address('177 W Price Ave') == 4)  # Pass
-    print(extract_address('4001 South 700 East') == 0)  # Pass
-    print(extract_address('6351 South 900 East') == 26)  # Pass
-    print(extract_address('380 W 2880 S') == 18)  # Pass
+def test_address_id():
+    print(address_id('177 W Price Ave') == 4)  # Pass
+    print(address_id('4001 South 700 East') == 0)  # Pass
+    print(address_id('6351 South 900 East') == 26)  # Pass
+    print(address_id('380 W 2880 S') == 18)  # Pass
 
 
-#test_extract_address()
+#test_address_id()
 
 
 # Makes calling upon distance_between shorter and easier
 def final_distance(node1, node2):
-    distance = distance_between(extract_address(node1), extract_address(node2))
+    distance = distance_between(address_id(node1), address_id(node2))
     return distance
 
 
@@ -153,7 +153,7 @@ deliver_packages(truck2)
 
 
 # Interface
-class Main:
+class Interface:
     # Welcome message
     print('Welcome to WGUPS')
     miles = truck1.mileage + truck2.mileage + truck3.mileage
@@ -161,6 +161,7 @@ class Main:
     limit = 140
     difference = limit - miles
     print("That's", f"{difference:.3}", "miles less than our limit of", limit, "miles!")
+    print("The last package was delivered at : 12:29")
 
     print('')
 
@@ -170,7 +171,7 @@ class Main:
         try:
             # Get the time that is wanted
             print("Enter a time in which you would like to pull the information from.")
-            user_time = input("format: HH:MM        ")
+            user_time = input("format: HH:MM (24 hour)        ")
             (h, m) = user_time.split(':')
             convert_timedelta = datetime.timedelta(hours=int(h), minutes=int(m))
 

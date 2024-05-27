@@ -28,6 +28,6 @@ class Package:
         if self.delivery_time < convert_timedelta:
             self.status = "Delivered"
         elif self.delivery_time > convert_timedelta:
-            self.status = "En route"
+            self.status = "En Route"
         else:
-            self.status = "At hub"
+            self.status = "At Hub"

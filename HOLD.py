@@ -1,3 +1,4 @@
+# This file is only used during the debugging process
 truck1 = truck.Truck(16, None, [1, 13, 14, 15, 16, 19, 20, 29, 30, 31, 34, 37, 40], 18, 0.0,
                      "4001 South 700 East", datetime.timedelta(hours=8))
 
