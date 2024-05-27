@@ -152,7 +152,7 @@ truck2.departure_time = min(truck1.time, truck3.time)
 deliver_packages(truck2)
 
 
-# Interface
+# D. :INTERFACE
 class Interface:
     # Welcome message
     print('Welcome to WGUPS')
